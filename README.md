@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##  In here I have currently compiled three methods of Data Handling in React
 
-## Available Scripts
+1. From Parent to Child using Props
+1. From Child to Parent using Callbacks
+1. Between Siblings
+  * Combine above two methods.
+  * Using Redux
+  * Using React’s Context API
+  
 
-In the project directory, you can run:
+### From Parent to Child Using Props
 
-### `yarn start`
+This is the easiest direction of data flow in React and the most basic one.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+class Parent extends React.Component {
+state = { data : "Hello World" } 
+render() {
+        
+        return (
+            <div>
+                 <Child1/>            //no data to send             
+                 <Child2 dataFromParent = {this.state.data} />
+            </div>
+        );
+    }
+}
+//It is no compulsion to use the data to send as a state, simple vars or const variables could also be used to send data from Parent to Child.
+```
+Simply, use this.props.dataFromParent (just a variable used for sending props) to access the data sent from Parent to Child
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```javascript
+class Child2 extends React.Component {
+render() {
+        
+        return (
+            <div>
+                The data from parent is:{this.props.dataFromParent}
+            </div>
+        );
+    }
+}
+```
 
-### `yarn test`
+### From Child to Parent Using Callbacks
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Step 1: Define a callback function that takes in a parameter which we consider having accessed from the child in the Parent.js
+* Step 2: Also, send the defined callback function as a props to the Child1.js
 
-### `yarn build`
+```javascript
+class Parent extends React.Component {
+state = { message: "" }
+callbackFunction = (childData) => {
+      this.setState({message: childData})
+},
+render() {
+        return (
+            <div>
+                 <Child1 parentCallback = {this.callbackFunction}/>
+                 <p> {this.state.message} </p>
+            </div>
+        );
+}
+}
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Step 3: In Child1.js send the data using this.props.callback(dataToParent)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```javascript
+class Child1 extends React.Component{
+sendData = () => {
+         this.props.parentCallback("Hey Popsie, How’s it going?");
+    },
+render() { 
+//you can call function sendData whenever you'd like to send data from child component to Parent component.
+    }
+};
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Between Siblings
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This will be discussed in later
