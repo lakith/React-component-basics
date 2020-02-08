@@ -1,0 +1,22 @@
+.Person {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Person-internal {
+    width: inherit;
+}
+
+.Person-controller {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Person-controller button {
+    flex-basis: 65%;
+}
+
+.Person-controller input[type=text] {
+    flex-basis: 30%;
+}
