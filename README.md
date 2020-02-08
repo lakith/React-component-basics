@@ -44,26 +44,27 @@ render() {
 
 ### From Child to Parent Using Callbacks
 
-* Step 1: Define a callback function that takes in a parameter which we consider having accessed from the child in the Parent.js
-* Step 2: Also, send the defined callback function as a props to the Child1.js
+* **Step 1:** Define a callback function that takes in a parameter which we consider having accessed from the child in the Parent.js
+* **Step 2:** Also, send the defined callback function as a props to the Child1.js
 
 ```javascript
 class Parent extends React.Component {
-state = { message: "" }
-callbackFunction = (childData) => {
-      this.setState({message: childData})
-},
-render() {
-        return (
-            <div>
-                 <Child1 parentCallback = {this.callbackFunction}/>
-                 <p> {this.state.message} </p>
-            </div>
-        );
+ state = { message: "" }
+ callbackFunction = (childData) => {
+       this.setState({message: childData})
+ },
+ render() {
+         return (
+             <div>
+                  <Child1 parentCallback = {this.callbackFunction}/>
+                  <p> {this.state.message} </p>
+             </div>
+         );
+ }
 }
-}
+```
 
-* Step 3: In Child1.js send the data using this.props.callback(dataToParent)
+* **Step 3:** In Child1.js send the data using this.props.callback(dataToParent)
 
 ```javascript
 class Child1 extends React.Component{
