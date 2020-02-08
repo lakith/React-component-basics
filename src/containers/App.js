@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Persons from '../components/Persons/Persons';
+import PersonController from '../components/PersonsContoller/PersonController';
 
 class App extends Component {
 
@@ -12,6 +13,16 @@ class App extends Component {
     ],
     showPersons: false
   };
+
+  displayHandler = () => {
+    let showPersons = this.state.showPersons;
+
+    showPersons = showPersons ? false : true;
+
+    this.setState({
+      showPersons : showPersons
+    })
+  }
 
   removePerson = (index) => {
     let persons = [...this.state.persons]
@@ -43,13 +54,27 @@ class App extends Component {
   }
 
   render(){
-    return (
-      <div className="App">
+
+    let persons = null
+    if(this.state.showPersons) {
+       persons = (
         <Persons 
           persons = {this.state.persons}
           clicked = {this.removePerson}
           changed = {this.nameChangeHandler}
         />
+      )
+    }
+
+    return (
+      <div className="App">
+        <PersonController 
+          click = {this.displayHandler}
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+        />
+
+        {persons}
       </div>
     );
   }

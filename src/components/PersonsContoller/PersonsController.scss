@@ -1,0 +1,41 @@
+.PersonController {
+    width: 100%;
+}
+
+    h3 {
+        font-weight: bold;
+        color: salmon;
+        font-size: 30px;
+    }
+
+    .red{
+        background-color: red;
+        color: seashell;
+    }
+
+    .green{
+        background-color: green;
+        color: black;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    button {
+        padding: 10px;
+    } 
+
+    form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+        input[type=text] {
+            margin-right: 10px;
+        }
+
+        input[type=number] {
+            margin-right: 10px;
+        }
