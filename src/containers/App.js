@@ -5,6 +5,11 @@ import PersonController from '../components/PersonsContoller/PersonController';
 
 class App extends Component {
 
+  constructor(props){
+    super(props)
+    console.log('[App.js] constructor - 01')
+  }
+
   state = {
     persons: [
       { id: '53c3ae8f-2ca2-45cd-963d-f291cee3ac34', name: 'Lakith Muthugala', age: 25 },
@@ -13,6 +18,11 @@ class App extends Component {
     ],
     showPersons: false
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps - 02',props)
+    return state;
+  }
 
   displayHandler = () => {
     let showPersons = this.state.showPersons;
@@ -53,8 +63,12 @@ class App extends Component {
     })
   }
 
-  render(){
+  componentDidMount(){
+    console.log('[App.js] - componentDidMount - 06')
+  }
 
+  render(){
+    console.log("[App.js] - render - 03")
     let persons = null
     if(this.state.showPersons) {
        persons = (
