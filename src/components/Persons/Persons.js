@@ -9,6 +9,15 @@ class Persons extends Component {
         // you can perform any clean up work here. like removing event listners.
     }
 
+    shouldComponentUpdate(nextProps,nextState){
+        console.log("[Persons.js] - shouldComponentUpdate")
+        if(nextProps.persons !== this.props.persons) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     render(){
         return this.props.persons.map((person, index) => {
             return(

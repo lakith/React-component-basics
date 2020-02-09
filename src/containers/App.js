@@ -16,7 +16,8 @@ class App extends Component {
       { id: '4115378e-0f0a-4461-b9cf-89724e76e9b5', name: 'Sachin Nanayakkara', age: 25 },
       { id: '6ef0f808-aad0-4d26-bd7d-f16ee5887bd9', name: 'Chalana Kalpitha', age: 26 }
     ],
-    showPersons: false
+    showPersons: false,
+    personControllerHandler: false
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -63,6 +64,14 @@ class App extends Component {
     })
   }
 
+  personControllerhandler = () => {
+    let personController = this.state.personControllerHandler;
+    personController = personController ? false : true;
+    this.setState({
+      personControllerHandler : personController
+    })
+  }
+
   componentDidMount(){
     console.log('[App.js] - componentDidMount - 06')
   }
@@ -82,11 +91,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <PersonController 
+        <button onClick={this.personControllerhandler}>Toggle Person Controller</button>
+        {this.state.personControllerHandler ? (
+          <PersonController 
           click = {this.displayHandler}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
-        />
+          />
+        ) : null}
 
         {persons}
       </div>
