@@ -3,9 +3,9 @@
 1. From Parent to Child using Props
 1. From Child to Parent using Callbacks
 1. Between Siblings
-  * Combine above two methods.
-  * Using Redux
-  * Using React’s Context API
+    * Combine above two methods.
+    * Using Redux
+    * Using React’s Context API
   
 
 ### From Parent to Child Using Props
