@@ -1,4 +1,4 @@
-##  In here I have currently compiled three methods of Data Handling in React
+##  In here I have currently compiled three methods of Data Handling methods in React
 
 1. From Parent to Child using Props
 1. From Child to Parent using Callbacks
